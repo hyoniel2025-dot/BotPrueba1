@@ -1,3 +1,14 @@
+import asyncio
+import threading
+
+# Solo si no hay un loop en el hilo actual
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
+# Ahora sí importar Pyrogram
+from pyrogram import Client
 from pyrogram import Client, filters
 from pyrogram.types import Message, BotCommand, InlineKeyboardMarkup, InlineKeyboardButton
 from os.path import exists
